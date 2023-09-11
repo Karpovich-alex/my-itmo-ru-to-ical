@@ -10,6 +10,8 @@ _event_type_to_tag_map = {
     "Лекции": "Лек",
     "Практические занятия": "Прак",
     "Зачет": "Зачет",
+    "Экзамен": "Экз",
+    "Лабораторные занятия": "Лаб",
 }
 
 _raw_event_key_names = {
@@ -59,6 +61,9 @@ def _raw_event_to_description(re: dict):
 
 
 def _raw_event_to_location(re: dict):
+    if re["format"] and re["format"].strip() == "Дистанционный":
+        return "Дистанционный"
+
     elements = []
     for key in "room", "building":
         if re[key]:

@@ -28,12 +28,15 @@ if app.config["SENTRY_DSN"]:
     )
 
 
-@app.route('/')
+@app.route(_calendar_route)
 def get_calendar():
     token = get_access_token(app.config["ISU_USERNAME"], app.config["ISU_PASSWORD"])
     events = get_raw_events(token)
     calendar = raw_events_to_calendar(events)
     return Response("\n".join(map(str.strip, calendar)), content_type="text/calendar")
 
+if app.config["SENTRY_DSN"]:
+    sentry_sdk.capture_message(f"my-itmo-ru-to-ical started for {app.config['ISU_USERNAME']}, hash {_creds_hash}")
 
-sentry_sdk.capture_message(f"my-itmo-ru-to-ical started for {app.config['ISU_USERNAME']}, hash {_creds_hash}")
+if __name__ == '__main__':
+   app.run()
