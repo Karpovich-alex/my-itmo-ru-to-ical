@@ -1,5 +1,14 @@
-ISU_USERNAME = ""
-ISU_PASSWORD = ""
+ISU_USER_NUM = 1 # Number of users
+
+# Creds for the first user
+ISU_USERNAME_1 = "" # ISU_USERNAME_{number} number: 1...n
+ISU_PASSWORD_1 = "" # ISU_PASSWORD_{number}
+ISU_USER_HASH_1 = "" # ISU_USER_HASH_{number}
+
+# ISU_USERNAME_2 = ""
+# ISU_PASSWORD_2 = ""
+# ISU_USER_HASH_2 = ""
+
 SCHEDULE_START_DATE = "YYYY-MM-DD"  # 2021-08-20, for example
 SCHEDULE_END_DATE = "YYYY-MM-DD"  # 2022-08-20, for example
 

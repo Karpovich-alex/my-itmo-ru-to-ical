@@ -1,5 +1,8 @@
 import functools
 from datetime import datetime, timedelta
+import os
+from base64 import b64encode
+from hashlib import sha256
 
 
 # https://gist.github.com/Morreski/c1d08a3afa4040815eafd3891e16b945
@@ -22,3 +25,6 @@ def timed_cache(**timedelta_kwargs):
         return _wrapped
 
     return _wrapper
+
+def get_hash(size: int = 32) -> str:
+    return os.urandom(size).hex()
