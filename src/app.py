@@ -42,9 +42,10 @@ def get_user_num(_creds_hash: str) -> int:
     return user_mapper[_creds_hash]
 
 
-@app.route("/ping")
-def ping():
-    return "pong"
+if app.config.get(f"PING_ENDPOINT", False):
+    @app.route("/ping")
+    def ping():
+        return "pong"
 
 
 @app.route("/calendar/<_creds_hash>", methods=["GET"])
